@@ -11,7 +11,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 
-import * as actionTodos from './../redux/action/todo'
+import * as actionTodos from './../redux/actions/todos'
 
 class TodoList extends Component {
     constructor(props) {
@@ -70,16 +70,15 @@ class TodoList extends Component {
     }
 
     render() {
-        console.log(this.props.todos)
         return (
             <View style={styles.container}>
-                <Text style={styles.TodolistText}>TodoList App</Text>
                 <View style={styles.inputContainer}>
                     <TextInput
                         placeholder="Todo List"
                         style={styles.placeInput}
                         value={this.state.newTodo}
                         onChangeText={this.handleChangeText}
+
                     />
                     <Button
                         title="Add"
@@ -100,9 +99,10 @@ class TodoList extends Component {
                         style={{
                             backgroundColor: '#fffff',
                             padding: 15,
-                            borderBottomWidth: 1,
-                            borderBottomColor: 'grey',
-                            width: '100%'
+                            borderWidth: 1,
+                            borderColor: '#ccc',
+                            width: '100%',
+                            marginTop: 10
                         }}
                         key={i}>
                         <Text>{item.name}</Text>
@@ -122,7 +122,8 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: 30,
         justifyContent: 'flex-start',
-        alignItems: 'center'
+        alignItems: 'center',
+        margin: 10
     },
     TodolistText: {
         marginBottom: 10,
@@ -135,7 +136,10 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     placeInput: {
-        width: '70%'
+        width: '70%',
+        borderWidth: 1,
+        borderRadius: 10,
+        borderColor: '#ccc'
     },
     placeButton: {
         width: '30%'

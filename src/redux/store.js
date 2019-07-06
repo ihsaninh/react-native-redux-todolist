@@ -1,12 +1,8 @@
-import { createStore, combineReducers } from 'redux'
-import todoReducer from './reducer/todoReducer'
+import { createStore, applyMiddleware } from 'redux';
 
-const rootReducer = combineReducers({
-    todos: todoReducer
-})
+import middlewares from './middleware';
+import appReducer from './reducers';
 
-const configureStore = () => {
-    return createStore(rootReducer)
-}
+const store = createStore(appReducer, {}, applyMiddleware(...middlewares))
 
-export default configureStore
+export { store };
