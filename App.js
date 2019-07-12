@@ -1,30 +1,28 @@
-import React, { Component } from 'react'
-import { Provider,connect } from 'react-redux'
-import { createReduxContainer } from 'react-navigation-redux-helpers'
-import RootNavigation from './src/navigations/RootNavigation'
-import { PersistGate } from 'redux-persist/integration/react'
-import { store, persistor } from './src/redux/store'
+import React, { Component } from "react";
+import { Provider, connect } from "react-redux";
+import { createReduxContainer } from "react-navigation-redux-helpers";
+import RootNavigation from "./src/navigations/RootNavigation";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./src/redux/store";
 
-const AppNav = createReduxContainer(RootNavigation, 'root')
-
+const AppNav = createReduxContainer(RootNavigation, "root");
 
 const mapStateToProps = state => ({
-    state : state.router
-})
+  state: state.router
+});
 
-const AppWithNavigationState = connect(mapStateToProps)(AppNav)
+const AppWithNavigationState = connect(mapStateToProps)(AppNav);
 
 class App extends Component {
-
-  render(){  
+  render() {
     return (
       <Provider store={store}>
-      	<PersistGate loading={null} persistor={persistor}>
-        	<AppWithNavigationState />
+        <PersistGate loading={null} persistor={persistor}>
+          <AppWithNavigationState />
         </PersistGate>
       </Provider>
-    )
+    );
   }
 }
 
-export default App
+export default App;
