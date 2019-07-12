@@ -6,9 +6,7 @@ import todos from './todos';
 
 const router = createNavigationReducer(RootNavigation);
 
-const appReducer = combineReducers({
+export default {
   router,
   todos
-})
-
-export default appReducer
+}

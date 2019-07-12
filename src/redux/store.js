@@ -1,8 +1,19 @@
 import { createStore, applyMiddleware } from 'redux';
 
 import middlewares from './middleware';
-import appReducer from './reducers';
+import rootReducers from './reducers';
 
-const store = createStore(appReducer, {}, applyMiddleware(...middlewares))
+import {persistStore, persistCombineReducers} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-export { store };
+const persistConfig = {
+    key: 'root',
+    storage
+};
+
+const persistReducer = persistCombineReducers(persistConfig, rootReducers);
+
+const store = createStore(persistReducer, {}, applyMiddleware(...middlewares))
+const persistor = persistStore(store)
+
+export { store, persistor };
